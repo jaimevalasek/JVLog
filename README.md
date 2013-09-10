@@ -39,7 +39,7 @@ Using the JVLog
 ```
 
  - Create phtml to send the log via email, if you use the sending via email.
- - Create phtml inside the folder view/mailtemplates/log-exception.phtml module of your application.
+ - Create phtml inside the folder `view/mailtemplates/log-exception.phtml` module of your application.
  
 ```phtml
 <h1><?php echo $this->subject?></h1>
