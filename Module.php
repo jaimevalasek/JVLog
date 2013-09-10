@@ -37,10 +37,14 @@
 
 namespace JVLog;
 
+use Zend\Mvc\MvcEvent;
+
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 
 class Module implements AutoloaderProviderInterface
 {
+    protected $finishLog = true;
+    
     public function onBootstrap($e)
     {
         $eventManager = $e->getApplication()->getEventManager();
@@ -51,6 +55,23 @@ class Module implements AutoloaderProviderInterface
                 $sm = $event->getApplication()->getServiceManager();
                 $serviceLog = $sm->get('jvlog-errorhandling');
                 $serviceLog->logException($exception);
+            }
+            
+            $this->finishLog = false;
+        });
+        
+        $eventManager->attach('finish', function($event)
+        {
+            if ($this->finishLog) 
+            {
+                $result = $event->getResult();
+                $events = method_exists($result, 'getVariables') ? $result->getVariables() : false;
+                $exception = isset($events['exception']) ? $events['exception'] : false;
+                if ($exception) {
+                    $sm = $event->getApplication()->getServiceManager();
+                    $serviceLog = $sm->get('jvlog-errorhandling');
+                    $serviceLog->logException($exception);
+                }
             }
         });
     }
