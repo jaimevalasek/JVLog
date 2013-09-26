@@ -1,0 +1,30 @@
+{
+    "name": "jaimevalasek/jv-log",
+    "description": "Use this module to generate and store logs of errors on your site, option to send logs via email using the module JVMail.",
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "keywords": [
+        "zf2", "zf2 log", "exception log zf2"
+    ],
+    "homepage": "https://github.com/jaimevalasek/JVLog",
+    "authors": [
+        {
+            "name": "Jaime Marcelo Valasek",
+            "email": "jaime.valasek@gmail.com",
+            "homepage": "http://valasek.com.br"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*",
+        "jaimevalasek/jv-mail": "dev-master"
+    },    
+    "autoload": {
+        "psr-0": {
+            "JVLog": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
