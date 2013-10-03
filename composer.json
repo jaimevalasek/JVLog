@@ -17,9 +17,7 @@
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.*",
-    },
-    "require-dev": {
-        "jaimevalasek/jv-log": "dev-master"
+        "jaimevalasek/jv-mail": "@dev"
     },
     "autoload": {
         "psr-0": {
